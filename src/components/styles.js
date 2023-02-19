@@ -8,15 +8,11 @@ export const styles = StyleSheet.create({
         textTransform: 'capitalize',
         flex: isEdit ? 1 : 0,
         textAlign: "center"
-    }),
-    HeaderContainer: (isEdit) => ({
-        height: RFPercentage(12),
-        backgroundColor: Colors.tabBg,
-        width: '100%',
-        flexDirection: 'row',
-        alignItems: 'flex-end',
-
-        justifyContent: !isEdit ? 'space-between' : 'center',
-        padding: RFPercentage(2)
-    })
+    }), 
+    headerText:(size,color)=>({ fontSize:size, fontWeight: '600', color:color}),
+    HeaderContainer:{
+        height: RFPercentage(5), flexDirection: 'row', justifyContent: 'space-between', alignItems: "center",
+        borderBottomWidth: RFPercentage(.1), borderBottomColor: Colors.tabBg,
+        marginTop: '15%'
+    }
 });
