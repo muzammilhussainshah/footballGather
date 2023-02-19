@@ -11,6 +11,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		689A431A29A2738200274C4A /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 689A431929A2738200274C4A /* Fonts */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		B38BF5E7A3FDADE85B68B3A7 /* libPods-footballGather-footballGatherTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F31852BB442E1E12339B9EF /* libPods-footballGather-footballGatherTests.a */; };
 		E1AD4C5E34C3A5BF785CC86E /* libPods-footballGather.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D40E560824E59EADC27CA637 /* libPods-footballGather.a */; };
@@ -37,6 +38,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = footballGather/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = footballGather/main.m; sourceTree = "<group>"; };
 		4539F2A7A420E67776A44EF9 /* Pods-footballGather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-footballGather.release.xcconfig"; path = "Target Support Files/Pods-footballGather/Pods-footballGather.release.xcconfig"; sourceTree = "<group>"; };
+		689A431929A2738200274C4A /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../node_modules/react-native-vector-icons/Fonts"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = footballGather/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86AA581F6A427CEC4A2270A8 /* Pods-footballGather-footballGatherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-footballGather-footballGatherTests.release.xcconfig"; path = "Target Support Files/Pods-footballGather-footballGatherTests/Pods-footballGather-footballGatherTests.release.xcconfig"; sourceTree = "<group>"; };
 		8F31852BB442E1E12339B9EF /* libPods-footballGather-footballGatherTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-footballGather-footballGatherTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,6 +88,7 @@
 		13B07FAE1A68108700A75B9A /* footballGather */ = {
 			isa = PBXGroup;
 			children = (
+				689A431929A2738200274C4A /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -145,7 +148,6 @@
 				F1C4323F770CA33897317460 /* Pods-footballGather-footballGatherTests.debug.xcconfig */,
 				86AA581F6A427CEC4A2270A8 /* Pods-footballGather-footballGatherTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -243,6 +245,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				689A431A29A2738200274C4A /* Fonts in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);

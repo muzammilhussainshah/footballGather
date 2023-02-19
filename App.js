@@ -1,112 +1,47 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
 
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 
 import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+  SafeAreaProvider,
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+} from 'react-native-safe-area-context';
+import Navigation from './src/router/Tab';
+import { PortalProvider } from '@gorhom/portal';
+import store from './src/store';
 
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+// import { I18nextProvider } from 'react-i18next';
+// import i18n, { fetchTranslations } from './src/i18n';
+import { Provider } from 'react-redux';
+import { LogBox, StatusBar, View } from 'react-native';
+import { DEFAULT_LANGUAGE } from './src/utilities';
+import { getItem, setItem } from './src/helpers/AsyncStorage';
+import { appLanguages } from './src/utilities/languageData';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+// ignore warnings
+
+LogBox.ignoreLogs([
+  'Non-serializable values were found in the navigation state'
+]);
+
+LogBox.ignoreAllLogs();
+function App() {
+
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    // <I18nextProvider i18n={i18n}>
+      <Provider store={store}>
+        <StatusBar
+          hidden={true}
+        />
+        <SafeAreaProvider>
+          <PortalProvider>
+            <Navigation />
+          </PortalProvider>
+        </SafeAreaProvider>
+      </Provider>
+    // </I18nextProvider> 
   );
-};
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+}
 
 export default App;
