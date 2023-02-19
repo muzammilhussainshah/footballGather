@@ -1,7 +1,9 @@
 // @app
 import React from 'react';
 import { Text, View, } from 'react-native';
+
 import { RFPercentage } from 'react-native-responsive-fontsize';
+
 import Colors from '../styles/Colors';
 import Button from './Button';
 import { styles } from './styles';

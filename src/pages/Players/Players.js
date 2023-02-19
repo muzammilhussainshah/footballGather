@@ -2,9 +2,7 @@
 import React from 'react';
 import {
   View,
-  ImageBackground,
-  Text,
-  Image,
+  Text, 
   TouchableOpacity,
   FlatList
 } from 'react-native';
@@ -14,7 +12,6 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import Entypo from 'react-native-vector-icons/Entypo'
 import Colors from '../../styles/Colors';
 import { styles } from './styles';
-import { onShare, rateUs } from './Components/Component';
 import Header from '../../components/Header';
 
 const Players = ({ }) => {
@@ -26,14 +23,14 @@ const Players = ({ }) => {
         leftIcon={'Edit'}
         rightIcon={<AntDesign size={RFPercentage(2.5)} name={'plus'} />}
         title={'Players'} />
+        
       <FlatList
         data={[0, 0, 0, 0, 0, 0]}
         renderItem={({ item }) => {
           return (
             <TouchableOpacity
               style={styles.listContainer}>
-              <Text style={{ fontSize: RFPercentage(1.8), fontWeight: '600', color: Colors.white, flex: 1 }}>{'ahmed shah'}</Text>
-              {/* <Text style={{ }}>{'ahmed shah'}</Text> */}
+              <Text style={styles.listTitle}>{'Player Name'}</Text>
               <Entypo size={RFPercentage(2.5)} name='chevron-right' color={Colors.tabInactive} />
             </TouchableOpacity>
           )
