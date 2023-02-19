@@ -12,9 +12,9 @@ const Header = ({ leftIcon, rightIcon, title }) => {
     return (
         <View style={styles.HeaderContainer}>
 
-            <Button title={leftIcon} titleStyle={styles.headerText(RFPercentage(1.8), Colors.skyBlue)} />
-            <Text style={styles.headerText(RFPercentage(2), Colors.white)}>{title}</Text>
-            <Button title={rightIcon} titleStyle={styles.headerText(RFPercentage(1.8), Colors.skyBlue)} />
+            {leftIcon && <Button title={leftIcon} titleStyle={styles.headerText(RFPercentage(1.8), Colors.skyBlue)} />}
+            {title && <Text style={[styles.headerText(RFPercentage(2), Colors.white), styles.headerMiddleText]}>{title}</Text>}
+            {rightIcon && <Button title={rightIcon} titleStyle={styles.headerText(RFPercentage(1.8), Colors.skyBlue)} />}
 
         </View>
     );
