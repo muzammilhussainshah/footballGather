@@ -7,6 +7,6 @@ export const styles = StyleSheet.create({
 
     headerText: (size, color) => ({ fontSize: size, fontWeight: '600', color: color }),
     headerMiddleText: { flex: 1, textAlign: 'center' },
-    HeaderContainer: { height: RFPercentage(5), flexDirection: 'row', justifyContent: 'space-between', alignItems: "center", borderBottomWidth: RFPercentage(.1), borderBottomColor: Colors.tabBg, marginTop: '15%' }
+    HeaderContainer: (height, marginTop, disableBorder) => ({ height: height ? height : RFPercentage(5), flexDirection: 'row', justifyContent: 'space-between', alignItems: "center", borderBottomWidth: disableBorder ? 0 : RFPercentage(.1), borderBottomColor: Colors.tabBg, marginTop: marginTop ? marginTop : '15%' })
 
 });
