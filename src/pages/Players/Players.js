@@ -1,19 +1,18 @@
 // @app
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
   TouchableOpacity,
-  // Button,
   FlatList,
   Dimensions,
 } from 'react-native';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import Modal from "react-native-modal";
 import RBSheet from "react-native-raw-bottom-sheet";
-
-import AntDesign from 'react-native-vector-icons/AntDesign'
 import Entypo from 'react-native-vector-icons/Entypo'
+import AntDesign from 'react-native-vector-icons/AntDesign'
+
 import Colors from '../../styles/Colors';
 import { styles } from './styles';
 import Header from '../../components/Header';
@@ -36,10 +35,7 @@ const Players = ({ navigation }) => {
 
   return (
     <>
-
-
       <View style={styles.container}>
-
         <Header
           leftIcon={'Edit'}
           rightIconCallBack={() => this.RBSheet.open()}
@@ -91,29 +87,17 @@ const Players = ({ navigation }) => {
               textStyle={styles.playerName}
               containerStyle={styles.fieldContainer} />
 
-            <AddPlayerText
-              marginTop
-              title={`Choose a name for your player so that you recognize him/her later on. Please note you can have players with the same name.`}
-            />
-            <AddPlayerText
-              marginTop
-              title={`*This field is mandatory`} />
+            <AddPlayerText marginTop title={`Choose a name for your player so that you recognize him/her later on. Please note you can have players with the same name.`} />
+            <AddPlayerText marginTop title={`*This field is mandatory`} />
+            <AddPlayerText title={`SKILLSET & POSITION`} />
 
-            <Text style={styles.nameDetail}>{`SKILLSET & POSITION`}</Text>
             <View style={styles.skillSetAndPositionContainer}>
-              <SkillSetField
-                value={selectedSkill}
-                title={"Skill"}
-                callBack={() => setModalVisible('skill')} />
-              <SkillSetField
-                value={selectedPosition}
-                title={"Position"}
-                disableBorder
-                callBack={() => setModalVisible('position')} />
+              <SkillSetField value={selectedSkill} title={"Skill"} callBack={() => setModalVisible('skill')} />
+              <SkillSetField value={selectedPosition} title={"Position"} disableBorder callBack={() => setModalVisible('position')} />
             </View>
-            <AddPlayerText
-              marginTop
-              title={`Make sure you balance your teams based on the skillset and position of your players.`}
+
+            <AddPlayerText marginTop title={`Make sure you balance your teams based on the skillset and position of your players.`}
+
             />
           </View>
         </RBSheet>
@@ -123,6 +107,7 @@ const Players = ({ navigation }) => {
           renderItem={({ item }) => {
             return (
               <TouchableOpacity
+                onPress={() => navigation.navigate('EditPlayer')}
                 style={[styles.listContainer,]}>
                 <Text style={styles.listTitle}>{'Player Name'}</Text>
                 <Entypo
@@ -135,6 +120,7 @@ const Players = ({ navigation }) => {
           keyExtractor={item => item.id}
         />
         <Button
+          // callBack={() => navigation.navigate('EditPlayer')}
           title={'Confirm Players'}
           customStyle={styles.confirmContainer}
           titleStyle={styles.confirmStyle}

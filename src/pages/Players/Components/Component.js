@@ -14,10 +14,10 @@ import { styles } from '../styles';
 const windowHeight = Dimensions.get('window').height;
 const flex1 = windowHeight / 10
 
-export const SkillSet = ({ setModalVisible, isModalVisible, setSelectedPosition, selectedPosition, setSelectedSkill, selectedSkill, }) => {
+export const SkillSet = ({ setModalVisible,full, isModalVisible, setSelectedPosition, selectedPosition, setSelectedSkill, selectedSkill, }) => {
     return (
         <View
-            style={styles.skillSetModalContainer}>
+            style={styles.skillSetModalContainer(full)}>
             <Header
                 height={RFPercentage(7)}
                 marginTop={'0%'}

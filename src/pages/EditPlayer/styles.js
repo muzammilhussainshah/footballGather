@@ -14,7 +14,11 @@ export const styles = StyleSheet.create({
     playerName: { color: Colors.tabInactive, marginHorizontal: RFPercentage(2), },
     addPlayer: { fontSize: RFPercentage(3.5), color: Colors.white, fontWeight: "700" },
     modalContainer: { flex: 1, backgroundColor: Colors.tabBg, padding: RFPercentage(1), paddingHorizontal: RFPercentage(1.5) },
-    skillSetModalContainer: (full) => ({ height: full ? '100%' : "90%", width: "100%", paddingTop: full ? '10%' : 0, justifyContent: "flex-start", alignItems: 'flex-start', backgroundColor: Colors.tabBg, borderRadius: RFPercentage(1), }),
+    skillSetModalContainer: {
+        height: "90%", width: "100%",
+        justifyContent: "flex-start", alignItems: 'flex-start'
+        , backgroundColor: Colors.tabBg, borderRadius: RFPercentage(1),
+    },
     skillSetModalHeader: { flexDirection: 'row', alignItems: "center", paddingHorizontal: RFPercentage(1) },
     skillSetModalHeaderText: { color: Colors.skyBlue, fontSize: RFPercentage(1.8), fontWeight: '600' },
     skillSetModalListContainer: (isModalVisible, flex1) => ({
