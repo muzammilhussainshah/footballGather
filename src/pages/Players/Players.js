@@ -1,5 +1,5 @@
 // @app
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -8,10 +8,13 @@ import {
   Dimensions,
 } from 'react-native';
 import { RFPercentage } from 'react-native-responsive-fontsize';
+import { SwipeListView } from 'react-native-swipe-list-view';
+
 import Modal from "react-native-modal";
 import RBSheet from "react-native-raw-bottom-sheet";
 import Entypo from 'react-native-vector-icons/Entypo'
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import Colors from '../../styles/Colors';
 import { styles } from './styles';
@@ -29,15 +32,55 @@ const Players = ({ navigation }) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [selectedPosition, setSelectedPosition] = useState('Unknown');
   const [selectedSkill, setSelectedSkill] = useState('Unknown');
+  const [isEdit, setisEdit] = useState(false);
+  const [isFetch, setisFetch] = useState(false);
 
   const windowHeight = Dimensions.get('window').height;
   const flex1 = windowHeight / 10
+  const [playersData, setPlayersData] = useState([
+    { key: '1', text: 'Item 1' },
+    { key: '2', text: 'Item 2' },
+    { key: '3', text: 'Item 3' },
+    { key: '4', text: 'Item 4' },
+  ])
 
+  const deleteFunc = (data) => {
+    const newItems = playersData.filter((item) => item.key !== data.item.key);
+    setPlayersData(newItems);
+  }
+
+
+  const List = ({ data, callback, isEdit }) => {
+    return (
+      <TouchableOpacity
+        activeOpacity={.9}
+        onPress={() => navigation.navigate('EditPlayer')}
+        style={[styles.listContainer, { backgroundColor: Colors.black }]}>
+        {isEdit &&
+          <Button
+            title={
+              <AntDesign
+                size={RFPercentage(2)}
+                name='minuscircle'
+                color={Colors.red} />
+            }
+            callBack={callback}
+          />
+        }
+        <Text style={styles.listTitle}>{data.item.text}</Text>
+        <Entypo
+          size={RFPercentage(2.5)}
+          name='chevron-right'
+          color={Colors.tabInactive} />
+      </TouchableOpacity>
+    )
+  }
   return (
     <>
       <View style={styles.container}>
         <Header
-          leftIcon={'Edit'}
+          leftIcon={isEdit ? 'Done' : 'Edit'}
+          leftIconCallBack={() => { setisEdit(!isEdit) }}
           rightIconCallBack={() => this.RBSheet.open()}
           rightIcon={<AntDesign size={RFPercentage(2.5)} name={'plus'} />}
           title={'Players'} />
@@ -102,7 +145,36 @@ const Players = ({ navigation }) => {
           </View>
         </RBSheet>
 
-        <FlatList
+        <SwipeListView
+          data={playersData}
+          renderItem={(data, rowMap) => {
+            return (
+              <List
+                callback={() => deleteFunc(data)}
+                isEdit={isEdit} data={data} />
+            )
+          }}
+          onRowOpen={() => {
+          }
+          }
+          renderHiddenItem={(data, rowMap) => (
+
+            <TouchableOpacity
+              onPress={() => {
+                deleteFunc(data)
+              }}
+              activeOpacity={.8}
+              style={styles.deleteIconContainer}>
+              <MaterialCommunityIcons
+                name={'delete'}
+                color={Colors.white}
+                size={RFPercentage(3)} />
+            </TouchableOpacity>
+          )}
+          rightOpenValue={isEdit ? 0 : -RFPercentage(6)}
+        />
+
+        {/* <FlatList
           data={[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
           renderItem={({ item }) => {
             return (
@@ -118,7 +190,7 @@ const Players = ({ navigation }) => {
             )
           }}
           keyExtractor={item => item.id}
-        />
+        /> */}
         <Button
           callBack={() => navigation.navigate('ConfirmPlayers')}
           title={'Confirm Players'}

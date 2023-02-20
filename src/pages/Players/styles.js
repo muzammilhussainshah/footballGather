@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
 
     listContainer: { height: RFPercentage(5), borderBottomWidth: RFPercentage(.1), borderBottomColor: Colors.tabBg, flexDirection: "row", alignItems: "center" },
 
-    listTitle: { fontSize: RFPercentage(1.8), fontWeight: '600', color: Colors.white, flex: 1 },
+    listTitle: { fontSize: RFPercentage(1.8), fontWeight: '600', color: Colors.white, flex: 1, marginHorizontal: RFPercentage(2) },
 
     nameDetail: { fontSize: RFPercentage(1.5), color: Colors.white, marginHorizontal: RFPercentage(2), marginTop: RFPercentage(3) },
 
@@ -38,5 +38,34 @@ export const styles = StyleSheet.create({
     confirmStyle: { color: Colors.skyBlue, textAlign: 'center', fontWeight: "600", fontSize: RFPercentage(1.8) },
 
     confirmContainer: { position: 'absolute', bottom: 0, padding: RFPercentage(2), width: Dimensions.get('window').width, backgroundColor: Colors.black, },
+
+    deleteIconContainer: { backgroundColor: Colors.red, flexDirection: 'row', paddingHorizontal: RFPercentage(1.5), height: '100%', justifyContent: 'flex-end', alignItems: 'center' },
+
+
+
+    wrapper: {},
+    slide1: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#9DD6EB'
+    },
+    slide2: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#97CAE5'
+    },
+    slide3: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#92BBD9'
+    },
+    text: {
+        color: '#fff',
+        fontSize: 30,
+        fontWeight: 'bold'
+    }
 
 });
