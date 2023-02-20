@@ -14,7 +14,15 @@ import { styles } from '../styles';
 const windowHeight = Dimensions.get('window').height;
 const flex1 = windowHeight / 10
 
-export const SkillSet = ({ setModalVisible,full, isModalVisible, setSelectedPosition, selectedPosition, setSelectedSkill, selectedSkill, }) => {
+export const SkillSet = ({
+    setModalVisible,
+    full,
+    isModalVisible,
+    setSelectedPosition,
+    selectedPosition,
+    setSelectedSkill,
+    selectedSkill,
+}) => {
     return (
         <View
             style={styles.skillSetModalContainer(full)}>
@@ -43,8 +51,8 @@ export const SkillSet = ({ setModalVisible,full, isModalVisible, setSelectedPosi
                         isModalVisible={isModalVisible}
                         item={item}
                         index={index} />)
-                        :
-                        POSITIONDATA.map((item, index) => <SkillSetList
+                    :
+                    POSITIONDATA.map((item, index) => <SkillSetList
                         setSelectedPosition={setSelectedPosition}
                         selectedPosition={selectedPosition}
                         selectedSkill={selectedSkill}

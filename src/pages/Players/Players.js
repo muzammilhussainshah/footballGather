@@ -120,7 +120,7 @@ const Players = ({ navigation }) => {
           keyExtractor={item => item.id}
         />
         <Button
-          // callBack={() => navigation.navigate('EditPlayer')}
+          callBack={() => navigation.navigate('ConfirmPlayers')}
           title={'Confirm Players'}
           customStyle={styles.confirmContainer}
           titleStyle={styles.confirmStyle}
