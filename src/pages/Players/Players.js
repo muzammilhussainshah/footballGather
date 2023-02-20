@@ -33,10 +33,10 @@ const Players = ({ navigation }) => {
   const [selectedPosition, setSelectedPosition] = useState('Unknown');
   const [selectedSkill, setSelectedSkill] = useState('Unknown');
   const [isEdit, setisEdit] = useState(false);
-  const [isFetch, setisFetch] = useState(false);
 
   const windowHeight = Dimensions.get('window').height;
   const flex1 = windowHeight / 10
+  
   const [playersData, setPlayersData] = useState([
     { key: '1', text: 'Item 1' },
     { key: '2', text: 'Item 2' },
@@ -53,7 +53,7 @@ const Players = ({ navigation }) => {
   const List = ({ data, callback, isEdit }) => {
     return (
       <TouchableOpacity
-        activeOpacity={.9}
+        activeOpacity={1}
         onPress={() => navigation.navigate('EditPlayer')}
         style={[styles.listContainer, { backgroundColor: Colors.black }]}>
         {isEdit &&
@@ -154,16 +154,10 @@ const Players = ({ navigation }) => {
                 isEdit={isEdit} data={data} />
             )
           }}
-          onRowOpen={() => {
-          }
-          }
           renderHiddenItem={(data, rowMap) => (
-
             <TouchableOpacity
-              onPress={() => {
-                deleteFunc(data)
-              }}
-              activeOpacity={.8}
+              onPress={() => { deleteFunc(data) }}
+              activeOpacity={.9}
               style={styles.deleteIconContainer}>
               <MaterialCommunityIcons
                 name={'delete'}
@@ -173,24 +167,6 @@ const Players = ({ navigation }) => {
           )}
           rightOpenValue={isEdit ? 0 : -RFPercentage(6)}
         />
-
-        {/* <FlatList
-          data={[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
-          renderItem={({ item }) => {
-            return (
-              <TouchableOpacity
-                onPress={() => navigation.navigate('EditPlayer')}
-                style={[styles.listContainer,]}>
-                <Text style={styles.listTitle}>{'Player Name'}</Text>
-                <Entypo
-                  size={RFPercentage(2.5)}
-                  name='chevron-right'
-                  color={Colors.tabInactive} />
-              </TouchableOpacity>
-            )
-          }}
-          keyExtractor={item => item.id}
-        /> */}
         <Button
           callBack={() => navigation.navigate('ConfirmPlayers')}
           title={'Confirm Players'}

@@ -39,7 +39,10 @@ export const styles = StyleSheet.create({
 
     confirmContainer: { position: 'absolute', bottom: 0, padding: RFPercentage(2), width: Dimensions.get('window').width, backgroundColor: Colors.black, },
 
-    deleteIconContainer: { backgroundColor: Colors.red, flexDirection: 'row', paddingHorizontal: RFPercentage(1.5), height: '100%', justifyContent: 'flex-end', alignItems: 'center' },
+    deleteIconContainer: { 
+        width:'50%',
+        alignSelf:"flex-end",
+        backgroundColor: Colors.red, flexDirection: 'row', paddingHorizontal: RFPercentage(1.5), height: '100%', justifyContent: 'flex-end', alignItems: 'center' },
 
 
 
