@@ -18,7 +18,7 @@ export const renderItem = ({ item, index, drag, isActive }) => {
             <TouchableOpacity
                 onPress={() => navigation.navigate('EditPlayer')}
                 style={[styles.listContainer,]}>
-                <Text style={styles.listTitle}>{item.title}</Text>
+                <Text style={styles.listTitle}>{item.text}</Text>
                 <TouchableHighlight onLongPress={drag} onLongPressDelay={100}>
                     <Entypo
                         disabled={isActive}
@@ -43,6 +43,5 @@ export const getTeamMembers = (data) => {
     let teamBIndex = data.findIndex((key) => key?.id == 'Team B')
     let totalTeamAMembers = data.slice(teamAIndex + 1, teamBIndex)
     let totalTeamBMembers = data.slice(teamBIndex + 1, data.length)
-    
     return { teamA: totalTeamAMembers, teamB: totalTeamBMembers }
 } 

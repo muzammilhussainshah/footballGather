@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
   Dimensions,
+  AsyncStorage
 } from 'react-native';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import { SwipeListView } from 'react-native-swipe-list-view';
@@ -23,6 +24,7 @@ import SearchBar from '../../components/SearchBar';
 import Button from '../../components/Button';
 import {
   AddPlayerText,
+  List,
   SkillSet,
   SkillSetField,
 } from './Components/Component';
@@ -32,49 +34,44 @@ const Players = ({ navigation }) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [selectedPosition, setSelectedPosition] = useState('Unknown');
   const [selectedSkill, setSelectedSkill] = useState('Unknown');
+  const [playerName, setplayerName] = useState('');
   const [isEdit, setisEdit] = useState(false);
 
   const windowHeight = Dimensions.get('window').height;
   const flex1 = windowHeight / 10
-  
-  const [playersData, setPlayersData] = useState([
-    { key: '1', text: 'Item 1' },
-    { key: '2', text: 'Item 2' },
-    { key: '3', text: 'Item 3' },
-    { key: '4', text: 'Item 4' },
-  ])
 
-  const deleteFunc = (data) => {
-    const newItems = playersData.filter((item) => item.key !== data.item.key);
+  const [playersData, setPlayersData] = useState([])
+
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      getPlayersData()
+    });
+    return unsubscribe;
+  }, [navigation]);
+
+
+
+  const getPlayersData = async () => {
+    let data = await AsyncStorage.getItem('Players');
+    if (data !== null) setPlayersData(JSON.parse(data))
+  }
+
+  const deleteFunc = async (data) => {
+    const newItems = playersData.filter((item) => item.id !== data?.item?.id);
+    await AsyncStorage.setItem('Players', JSON.stringify(newItems));
     setPlayersData(newItems);
   }
-
-
-  const List = ({ data, callback, isEdit }) => {
-    return (
-      <TouchableOpacity
-        activeOpacity={1}
-        onPress={() => navigation.navigate('EditPlayer')}
-        style={[styles.listContainer, { backgroundColor: Colors.black }]}>
-        {isEdit &&
-          <Button
-            title={
-              <AntDesign
-                size={RFPercentage(2)}
-                name='minuscircle'
-                color={Colors.red} />
-            }
-            callBack={callback}
-          />
-        }
-        <Text style={styles.listTitle}>{data.item.text}</Text>
-        <Entypo
-          size={RFPercentage(2.5)}
-          name='chevron-right'
-          color={Colors.tabInactive} />
-      </TouchableOpacity>
-    )
+  const addPlayer = async () => {
+    let obj = { text: playerName, selectedSkill, selectedPosition, id: Math.random().toString(36).substring(2, 8) }
+    let playersCopy = JSON.parse(JSON.stringify(playersData))
+    playersCopy.push(obj)
+    await AsyncStorage.setItem('Players', JSON.stringify(playersCopy));
+    setPlayersData(playersCopy)
+    setplayerName('')
+    this.RBSheet.close()
   }
+
   return (
     <>
       <View style={styles.container}>
@@ -118,13 +115,15 @@ const Players = ({ navigation }) => {
               disableBorder
               leftIconCallBack={() => this.RBSheet.close()}
               leftIcon={'Cancel'}
+              rightIconCallBack={async () => addPlayer()}
+              disableRightBtn={playerName.length > 0 ? false : true}
               rightIcon={'Save'}
             />
             <Text style={styles.addPlayer}>{`Add Player`}</Text>
             <AddPlayerText title={`NAME DETAIL`} />
 
             <SearchBar
-              callBack={(text) => console.log(text, 'text')}
+              callBack={(text) => setplayerName(text)}
               placeHolder={`*Name of the player`}
               placeholderTextColor={Colors.tabInactive}
               textStyle={styles.playerName}
@@ -150,6 +149,7 @@ const Players = ({ navigation }) => {
           renderItem={(data, rowMap) => {
             return (
               <List
+                navigation={navigation}
                 callback={() => deleteFunc(data)}
                 isEdit={isEdit} data={data} />
             )
@@ -168,10 +168,10 @@ const Players = ({ navigation }) => {
           rightOpenValue={isEdit ? 0 : -RFPercentage(6)}
         />
         <Button
-          callBack={() => navigation.navigate('ConfirmPlayers')}
+          callBack={() => { if (playersData.length > 0) navigation.navigate('ConfirmPlayers', { playersData }) }}
           title={'Confirm Players'}
           customStyle={styles.confirmContainer}
-          titleStyle={styles.confirmStyle}
+          titleStyle={styles.confirmStyle((playersData.length > 0) ? false : true)}
         />
       </View >
     </>

@@ -8,7 +8,7 @@ import Colors from '../styles/Colors';
 import Button from './Button';
 import { styles } from './styles';
 
-const Header = ({ leftIcon, rightIcon, title, leftIconCallBack, rightIconCallBack, height, marginTop, disableBorder }) => {
+const Header = ({ leftIcon, rightIcon, title, leftIconCallBack, rightIconCallBack, height, marginTop, disableBorder, disableRightBtn }) => {
     return (
         <View style={[styles.HeaderContainer(height, marginTop, disableBorder),]}>
 
@@ -16,7 +16,7 @@ const Header = ({ leftIcon, rightIcon, title, leftIconCallBack, rightIconCallBac
                 callBack={leftIconCallBack}
                 titleStyle={styles.headerText(RFPercentage(1.8), Colors.skyBlue)} />}
             {title && <Text style={[styles.headerText(RFPercentage(2), Colors.white), styles.headerMiddleText]}>{title}</Text>}
-            {rightIcon && <Button callBack={rightIconCallBack} title={rightIcon} titleStyle={styles.headerText(RFPercentage(1.8), Colors.skyBlue)} />}
+            {rightIcon && <Button callBack={rightIconCallBack} title={rightIcon} titleStyle={styles.headerText(RFPercentage(1.8), disableRightBtn ? Colors.tabInactive : Colors.skyBlue)} />}
 
         </View>
     );

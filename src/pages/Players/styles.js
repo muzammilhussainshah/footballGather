@@ -35,14 +35,16 @@ export const styles = StyleSheet.create({
 
     checkIcon: { marginHorizontal: RFPercentage(1) },
 
-    confirmStyle: { color: Colors.skyBlue, textAlign: 'center', fontWeight: "600", fontSize: RFPercentage(1.8) },
+    confirmStyle: (disabled) => ({ color: disabled ? Colors.tabInactive : Colors.skyBlue, textAlign: 'center', fontWeight: "600", fontSize: RFPercentage(1.8) }),
+
 
     confirmContainer: { position: 'absolute', bottom: 0, padding: RFPercentage(2), width: Dimensions.get('window').width, backgroundColor: Colors.black, },
 
-    deleteIconContainer: { 
-        width:'50%',
-        alignSelf:"flex-end",
-        backgroundColor: Colors.red, flexDirection: 'row', paddingHorizontal: RFPercentage(1.5), height: '100%', justifyContent: 'flex-end', alignItems: 'center' },
+    deleteIconContainer: {
+        width: '50%',
+        alignSelf: "flex-end",
+        backgroundColor: Colors.red, flexDirection: 'row', paddingHorizontal: RFPercentage(1.5), height: '100%', justifyContent: 'flex-end', alignItems: 'center'
+    },
 
 
 

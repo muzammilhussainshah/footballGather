@@ -58,8 +58,8 @@ export default class CustomTimeSelecter extends React.Component {
         return (
             <>
                 <HighLightView
-                    style={{ backgroundColor: Colors.tabInactive }}
-                    highlightColor={Colors.tabInactive}
+                    style={{ backgroundColor: Colors.gray }}
+                    highlightColor={Colors.gray}
                     highlightWidth={this.props.highlightWidth}
                     wrapperHeight={this.props.wrapperHeight}
                     itemHeight={this.props.itemHeight}

@@ -1,5 +1,5 @@
 // @app
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Dimensions,
   FlatList,
@@ -21,10 +21,9 @@ import {
   CounterFooter,
 } from './Components/Component';
 
-
-
 const windowHeight = Dimensions.get('window').height;
 const flexH1 = windowHeight / 10
+
 const GetherInProgress = ({ navigation, route }) => {
   const [teamA, setteamA] = useState(route.params.teamA)
   const [teamB, setteamB] = useState(route.params.teamB)
@@ -119,7 +118,7 @@ const GetherInProgress = ({ navigation, route }) => {
               return (
                 <View style={styles.listContainer}>
                   <Text style={[styles.confirmStyle(true, null, RFPercentage(2)), { textAlign: 'left', color: Colors.white }]}>
-                    {item.title}
+                    {item.text}
                   </Text>
                 </View>
               )
@@ -136,7 +135,7 @@ const GetherInProgress = ({ navigation, route }) => {
               return (
                 <View style={styles.listContainer}>
                   <Text style={[styles.confirmStyle(true, null, RFPercentage(2)), { textAlign: 'left', color: Colors.white }]}>
-                    {item.title}
+                    {item.text}
                   </Text>
                 </View>
               )

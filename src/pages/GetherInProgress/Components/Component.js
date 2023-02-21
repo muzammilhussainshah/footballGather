@@ -92,9 +92,9 @@ export const CounterFooter = ({ callBack, remainingTimeProp }) => {
                 <View style={{ flex: 1 }}>
 
                     <Button
-                        callBack={callBack}
+                        callBack={timerState == 'Pause' ? null : callBack}
                         title={`Set Time`}
-                        titleStyle={styles.confirmStyle(false, null, RFPercentage(2))}
+                        titleStyle={styles.confirmStyle(timerState == 'Pause' ? true : false, null, RFPercentage(2))}
                         customStyle={[styles.plusIcon, { flex: 0, marginVertical: RFPercentage(1), }]} />
                 </View>
             </View>

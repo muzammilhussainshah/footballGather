@@ -1,5 +1,5 @@
 // @app
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Text,
   View,
@@ -19,9 +19,9 @@ import {
   renderItem
 } from './Components/Component';
 
-const ConfirmPlayers = ({ navigation }) => {
-
-  const [data, setData] = useState(PLAYERSDATA);
+const ConfirmPlayers = ({ navigation, route }) => {
+  console.log(route.params.playersData, 'playersDataplayersData')
+  const [data, setData] = useState([]);
   const [teamA, setteamA] = useState(getTeamMembers(data).teamA)
   const [teamB, setteamB] = useState(getTeamMembers(data).teamB)
 
@@ -31,6 +31,14 @@ const ConfirmPlayers = ({ navigation }) => {
     setData(data);
   };
 
+  useEffect(() => {
+    let PlayersCopy = JSON.parse(JSON.stringify(route.params.playersData))
+    const newArray = PlayersCopy.map(obj => ({ ...obj, isDrag: true }));
+    let teamA = { title: 'Team A', isDrag: false, id: 'Team A' }
+    let teamB = { title: 'Team B', isDrag: false, id: 'Team B' }
+    newArray.push(teamA, teamB)
+    setData(newArray)
+  }, [])
   return (
     <>
       <View style={styles.container}>
@@ -47,7 +55,7 @@ const ConfirmPlayers = ({ navigation }) => {
           scrollEnabled={false}
           data={data}
           renderItem={renderItem}
-          keyExtractor={(item) => item.key}
+          keyExtractor={(item) => item.id}
           onDragEnd={onDragEnd}
         />
         <Button

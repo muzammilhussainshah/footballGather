@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import {
   View,
+  AsyncStorage
 } from 'react-native';
 
 import { RFPercentage } from 'react-native-responsive-fontsize';
@@ -17,13 +18,15 @@ import {
   SkillSet,
   SkillSetField
 } from '../Players/Components/Component';
+import { updateData } from './Components/Component';
 
 
-const EditPlayer = ({ navigation }) => {
+const EditPlayer = ({ navigation, route }) => {
 
   const [isModalVisible, setModalVisible] = useState(false);
-  const [selectedPosition, setSelectedPosition] = useState('Unknown');
-  const [selectedSkill, setSelectedSkill] = useState('Unknown');
+  const [playerName, setplayerName] = useState(route?.params?.playedData?.text);
+  const [selectedPosition, setSelectedPosition] = useState(route?.params?.playedData?.selectedPosition);
+  const [selectedSkill, setSelectedSkill] = useState(route?.params?.playedData?.selectedSkill);
 
   return (
     <>
@@ -52,14 +55,17 @@ const EditPlayer = ({ navigation }) => {
           leftIcon={<AntDesign size={RFPercentage(2.5)} name={'left'} />}
           disableBorder
           rightIcon={'Save'}
+          rightIconCallBack={() => updateData(route)}
+          disableRightBtn={playerName.length > 0 ? false : true}
           title={'Players'} />
 
         <View style={{ paddingHorizontal: RFPercentage(1) }}>
 
           <AddPlayerText title={`NAME DETAIL`} />
           <SearchBar
-            callBack={(text) => console.log(text, 'text')}
+            callBack={(text) => setplayerName(text)}
             placeHolder={`*Name of the player`}
+            value={playerName}
             placeholderTextColor={Colors.tabInactive}
             textStyle={styles.playerName}
             containerStyle={styles.fieldContainer} />
