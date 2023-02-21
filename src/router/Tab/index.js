@@ -3,6 +3,7 @@ import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/
 import * as React from 'react';
 import ConfirmPlayers from '../../pages/ConfirmPlayers/ConfirmPlayers';
 import EditPlayer from '../../pages/EditPlayer/EditPlayer';
+import GetherInProgress from '../../pages/GetherInProgress/GetherInProgress';
 import MyTabs from './SCBottomTabNavigator';
 export default function Navigation() {
   return (
@@ -21,6 +22,7 @@ function RootNavigator() {
         headerShown: false,
       }}
     >
+      <Stack.Screen name="GetherInProgress" component={GetherInProgress} />
       <Stack.Screen name="MyTabs" component={MyTabs} />
       <Stack.Screen name="EditPlayer" component={EditPlayer} />
       <Stack.Screen name="ConfirmPlayers" component={ConfirmPlayers} />

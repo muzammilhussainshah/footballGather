@@ -12,5 +12,11 @@ export const styles = StyleSheet.create({
     listContainer: { height: RFPercentage(5), borderBottomWidth: RFPercentage(.1), borderBottomColor: Colors.tabBg, flexDirection: "row", alignItems: "center" },
 
     listTitle: { fontSize: RFPercentage(1.8), fontWeight: '600', color: Colors.white, flex: 1 },
-bench:{ fontWeight: '600', color: Colors.tabInactive, marginTop: RFPercentage(2) },
+
+    bench: { fontWeight: '600', color: Colors.tabInactive, marginTop: RFPercentage(2) },
+
+    confirmStyle: (disabled) => ({ color: disabled ? Colors.tabInactive : Colors.skyBlue, textAlign: 'center', fontWeight: "600", fontSize: RFPercentage(1.8) }),
+
+    confirmContainer: { position: 'absolute', bottom: '2%', padding: RFPercentage(1), width: Dimensions.get('window').width, backgroundColor: Colors.black, },
+
 });
