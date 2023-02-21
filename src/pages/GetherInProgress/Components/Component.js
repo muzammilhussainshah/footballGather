@@ -32,11 +32,12 @@ export const Counter = ({ title, points, setVal }) => {
         </View>
     )
 }
-export const CounterFooter = () => {
+export const CounterFooter = ({ callBack, remainingTimeProp }) => {
 
 
     const [isRunning, setIsRunning] = useState(false);
-    const [remainingTime, setRemainingTime] = useState(600);
+    const [remainingTime, setRemainingTime] = useState(remainingTimeProp);
+    console.log(remainingTimeProp, 'remainingTimePropremainingTimePropremainingTimeProp')
 
     useEffect(() => {
         let intervalId;
@@ -48,13 +49,13 @@ export const CounterFooter = () => {
             setIsRunning(false);
         }
         return () => clearInterval(intervalId);
-    }, [isRunning, remainingTime]);
-
+    }, [isRunning, remainingTime,]);
+    useEffect(() => { setRemainingTime(remainingTimeProp); }, [remainingTimeProp])
     const handleStartStop = () => {
         setTimerState(isRunning ? 'Resume' : 'Pause')
         setIsRunning((prevIsRunning) => !prevIsRunning);
     };
-    
+
     const handleReset = () => {
         setRemainingTime(600);
         setTimerState('Start')
@@ -75,7 +76,7 @@ export const CounterFooter = () => {
                 <View style={{ flex: 1, flexDirection: 'row', justifyContent: "center", alignItems: 'center' }}>
                     <Button
                         title={`Cancel`}
-                        callBack={handleReset}
+                        callBack={timerState == 'Start' ? null : handleReset}
                         titleStyle={styles.confirmStyle(timerState !== 'Start' ? false : true, null, RFPercentage(2))}
                         customStyle={[styles.plusIcon, { flex: 0, }]} />
                     <Button
@@ -91,6 +92,7 @@ export const CounterFooter = () => {
                 <View style={{ flex: 1 }}>
 
                     <Button
+                        callBack={callBack}
                         title={`Set Time`}
                         titleStyle={styles.confirmStyle(false, null, RFPercentage(2))}
                         customStyle={[styles.plusIcon, { flex: 0, marginVertical: RFPercentage(1), }]} />

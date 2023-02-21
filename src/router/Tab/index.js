@@ -22,10 +22,10 @@ function RootNavigator() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="GetherInProgress" component={GetherInProgress} />
       <Stack.Screen name="MyTabs" component={MyTabs} />
       <Stack.Screen name="EditPlayer" component={EditPlayer} />
       <Stack.Screen name="ConfirmPlayers" component={ConfirmPlayers} />
+      <Stack.Screen name="GetherInProgress" component={GetherInProgress} />
 
     </Stack.Navigator>
   );
