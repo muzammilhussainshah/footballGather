@@ -1,11 +1,10 @@
 // @app
 import React, { useState } from 'react';
 import {
-    View,
     AsyncStorage
 } from 'react-native';
 
-export const updateData = async (route) => {
+export const updateData = async (navigation,playerName,setplayerName, selectedPosition, selectedSkill, route) => {
     if (playerName.length > 0) {
         let data = await AsyncStorage.getItem('Players');
         if (data !== null) {

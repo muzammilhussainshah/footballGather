@@ -55,7 +55,7 @@ const EditPlayer = ({ navigation, route }) => {
           leftIcon={<AntDesign size={RFPercentage(2.5)} name={'left'} />}
           disableBorder
           rightIcon={'Save'}
-          rightIconCallBack={() => updateData(route)}
+          rightIconCallBack={() => updateData(navigation, playerName, setplayerName, selectedPosition, selectedSkill, route)}
           disableRightBtn={playerName.length > 0 ? false : true}
           title={'Players'} />
 
