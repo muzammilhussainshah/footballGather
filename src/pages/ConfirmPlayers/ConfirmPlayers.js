@@ -20,7 +20,6 @@ import {
 } from './Components/Component';
 
 const ConfirmPlayers = ({ navigation, route }) => {
-  console.log(route.params.playersData, 'playersDataplayersData')
   const [data, setData] = useState([]);
   const [teamA, setteamA] = useState(getTeamMembers(data).teamA)
   const [teamB, setteamB] = useState(getTeamMembers(data).teamB)
@@ -39,6 +38,7 @@ const ConfirmPlayers = ({ navigation, route }) => {
     newArray.push(teamA, teamB)
     setData(newArray)
   }, [])
+  
   return (
     <>
       <View style={styles.container}>

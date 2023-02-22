@@ -40,37 +40,16 @@ export const styles = StyleSheet.create({
 
     confirmContainer: { position: 'absolute', bottom: 0, padding: RFPercentage(2), width: Dimensions.get('window').width, backgroundColor: Colors.black, },
 
-    deleteIconContainer: {
-        width: '50%',
-        alignSelf: "flex-end",
-        backgroundColor: Colors.red, flexDirection: 'row', paddingHorizontal: RFPercentage(1.5), height: '100%', justifyContent: 'flex-end', alignItems: 'center'
-    },
-
-
+    deleteIconContainer: { width: '50%', alignSelf: "flex-end", backgroundColor: Colors.red, flexDirection: 'row', paddingHorizontal: RFPercentage(1.5), height: '100%', justifyContent: 'flex-end', alignItems: 'center' },
 
     wrapper: {},
-    slide1: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#9DD6EB'
-    },
-    slide2: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#97CAE5'
-    },
-    slide3: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#92BBD9'
-    },
-    text: {
-        color: '#fff',
-        fontSize: 30,
-        fontWeight: 'bold'
-    }
+
+    slide1: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#9DD6EB' },
+
+    slide2: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#97CAE5' },
+
+    slide3: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#92BBD9' },
+
+    text: { color: '#fff', fontSize: 30, fontWeight: 'bold' }
 
 });

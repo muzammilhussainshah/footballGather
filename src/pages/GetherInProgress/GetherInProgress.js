@@ -27,8 +27,8 @@ const windowHeight = Dimensions.get('window').height;
 const flexH1 = windowHeight / 10
 
 const GetherInProgress = ({ navigation, route }) => {
-  // const [teamA, setteamA] = useState(route.params.teamA)
-  // const [teamB, setteamB] = useState(route.params.teamB)
+  const [teamA, setteamA] = useState(route.params.teamA)
+  const [teamB, setteamB] = useState(route.params.teamB)
   const [teamAPoints, setteamAPoints] = useState(0)
   const [teamBPoints, setteamBPoints] = useState(0)
   const [getTime, setgetTime] = useState({ minuts: 10, seconds: 0 })
