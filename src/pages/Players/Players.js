@@ -13,7 +13,6 @@ import { SwipeListView } from 'react-native-swipe-list-view';
 
 import Modal from "react-native-modal";
 import RBSheet from "react-native-raw-bottom-sheet";
-import Entypo from 'react-native-vector-icons/Entypo'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
@@ -76,6 +75,7 @@ const Players = ({ navigation }) => {
     <>
       <View style={styles.container}>
         <Header
+          disableLeftBtn={playersData?.length > 0 ? false : true}
           leftIcon={isEdit ? 'Done' : 'Edit'}
           leftIconCallBack={() => { setisEdit(!isEdit) }}
           rightIconCallBack={() => this.RBSheet.open()}
@@ -143,36 +143,45 @@ const Players = ({ navigation }) => {
             />
           </View>
         </RBSheet>
-
-        <SwipeListView
-          data={playersData}
-          renderItem={(data, rowMap) => {
-            return (
-              <List
-                navigation={navigation}
-                callback={() => deleteFunc(data)}
-                isEdit={isEdit} data={data} />
-            )
-          }}
-          renderHiddenItem={(data, rowMap) => (
-            <TouchableOpacity
-              onPress={() => { deleteFunc(data) }}
-              activeOpacity={.9}
-              style={styles.deleteIconContainer}>
-              <MaterialCommunityIcons
-                name={'delete'}
-                color={Colors.white}
-                size={RFPercentage(3)} />
-            </TouchableOpacity>
-          )}
-          rightOpenValue={isEdit ? 0 : -RFPercentage(6)}
-        />
-        <Button
-          callBack={() => { if (playersData.length > 0) navigation.navigate('ConfirmPlayers', { playersData }) }}
-          title={'Confirm Players'}
-          customStyle={styles.confirmContainer}
-          titleStyle={styles.confirmStyle((playersData.length > 0) ? false : true)}
-        />
+        {playersData?.length > 0 ?
+          <SwipeListView
+            data={playersData}
+            renderItem={(data, rowMap) => {
+              return (
+                <List
+                  navigation={navigation}
+                  callback={() => deleteFunc(data)}
+                  isEdit={isEdit} data={data} />
+              )
+            }}
+            renderHiddenItem={(data, rowMap) => (
+              <TouchableOpacity
+                onPress={() => { deleteFunc(data) }}
+                activeOpacity={.9}
+                style={styles.deleteIconContainer}>
+                <MaterialCommunityIcons
+                  name={'delete'}
+                  color={Colors.white}
+                  size={RFPercentage(3)} />
+              </TouchableOpacity>
+            )}
+            rightOpenValue={isEdit ? 0 : -RFPercentage(6)}
+          />
+          :
+          <>
+            <Text style={{ color: Colors.white, fontSize: RFPercentage(1.6), textAlign: 'center', marginTop: '80%' }}>We could not find any players .</Text>
+            <Text style={{ color: Colors.white, fontSize: RFPercentage(1.6), textAlign: 'center' }}>Please create one.</Text>
+          </>
+        }
+        {playersData?.length > 0
+          &&
+          <Button
+            callBack={() => { if (playersData.length > 0) navigation.navigate('ConfirmPlayers', { playersData }) }}
+            title={'Confirm Players'}
+            customStyle={styles.confirmContainer}
+            titleStyle={styles.confirmStyle((playersData.length > 0) ? false : true)}
+          />
+        }
       </View >
     </>
   );

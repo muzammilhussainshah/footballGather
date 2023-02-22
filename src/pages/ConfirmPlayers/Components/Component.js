@@ -4,6 +4,7 @@ import {
     Text,
     TouchableOpacity,
     TouchableHighlight,
+    View,
 } from 'react-native';
 
 import { RFPercentage } from 'react-native-responsive-fontsize';
@@ -15,8 +16,8 @@ import { styles } from '../styles';
 export const renderItem = ({ item, index, drag, isActive }) => {
     return (
         item.isDrag ?
-            <TouchableOpacity
-                onPress={() => navigation.navigate('EditPlayer')}
+            <View
+                // onPress={() => navigation.navigate('EditPlayer')}
                 style={[styles.listContainer,]}>
                 <Text style={styles.listTitle}>{item.text}</Text>
                 <TouchableHighlight onLongPress={drag} onLongPressDelay={100}>
@@ -27,13 +28,13 @@ export const renderItem = ({ item, index, drag, isActive }) => {
                         color={Colors.tabInactive} />
                 </TouchableHighlight>
 
-            </TouchableOpacity> :
+            </View> :
 
-            <TouchableOpacity
-                onPress={() => navigation.navigate('EditPlayer')}
+            <View
+                // onPress={() => navigation.navigate('EditPlayer')}
                 style={[styles.listContainer,]}>
                 <Text style={styles.listTitle}>{item.title}</Text>
-            </TouchableOpacity>
+            </View>
     );
 };
 

@@ -133,7 +133,6 @@ export const AddPlayerText = ({ title, marginTop }) => {
 }
 
 export const List = ({ data, callback, isEdit, navigation }) => {
-    console.log(data.item, 'navigation')
     return (
         <TouchableOpacity
             activeOpacity={1}

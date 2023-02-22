@@ -1,6 +1,7 @@
 // @app
 import React, { useEffect, useState } from 'react';
 import {
+    Alert,
     Dimensions,
     Text,
     View,
@@ -47,6 +48,9 @@ export const CounterFooter = ({ callBack, remainingTimeProp }) => {
             }, 1000);
         } else if (remainingTime === 0) {
             setIsRunning(false);
+            Alert.alert(`Time's up!`) 
+            setRemainingTime(remainingTimeProp)
+            setTimerState('Start')
         }
         return () => clearInterval(intervalId);
     }, [isRunning, remainingTime,]);
@@ -57,7 +61,7 @@ export const CounterFooter = ({ callBack, remainingTimeProp }) => {
     };
 
     const handleReset = () => {
-        setRemainingTime(600);
+        setRemainingTime(remainingTimeProp);
         setTimerState('Start')
         setIsRunning(false);
     };
