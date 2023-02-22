@@ -11,6 +11,7 @@ import { PortalProvider } from '@gorhom/portal';
 import store from './src/store';
 
 // import { I18nextProvider } from 'react-i18next';
+
 // import i18n, { fetchTranslations } from './src/i18n';
 import { Provider } from 'react-redux';
 import { LogBox, StatusBar, View } from 'react-native';
